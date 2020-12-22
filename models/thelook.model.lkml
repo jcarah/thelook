@@ -4,7 +4,7 @@ connection: "thelookmysql"
 include: "/views/**/*.view"
 
 datagroup: thelook_default_datagroup {
-  # sql_trigger: SELECT MAX(id) FROM etl_log;;
+  sql_trigger: select {{ 'now' | date: "%-m" }} ;;
   max_cache_age: "1 hour"
 }
 
@@ -13,6 +13,18 @@ persist_with: thelook_default_datagroup
 
 
 explore: events {
+  access_filter: {
+    field: users.email
+    user_attribute: email
+  }
+  sql_always_where:
+  {% if _user_attributes['sales_filtering'] == 'no' %}
+    ${users.email} =  {{ _user_attributes['email'] }}
+  {% else %}
+    1=1
+  {% endif %}
+
+  ;;
   join: users {
     type: left_outer
     sql_on: ${events.user_id} = ${users.id} ;;
