@@ -39,6 +39,10 @@ view: order_items {
     sql: ${TABLE}.sale_price ;;
   }
 
+  measure: unique_orders {
+    type: count_distinct
+    sql: ${order_id} ;;
+  }
   measure: count {
     type: count
     drill_fields: [id, orders.id, inventory_items.id]
