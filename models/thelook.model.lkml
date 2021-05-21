@@ -8,6 +8,7 @@ datagroup: thelook_default_datagroup {
   max_cache_age: "1 hour"
 }
 
+
 persist_with: thelook_default_datagroup
 explore: events {
   access_filter: {
