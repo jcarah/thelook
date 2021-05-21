@@ -9,7 +9,6 @@ datagroup: thelook_default_datagroup {
 }
 
 
-
 persist_with: thelook_default_datagroup
 explore: events {
   access_filter: {
