@@ -2,6 +2,7 @@ connection: "thelookmysql"
 
 # include all the views
 include: "/views/**/*.view"
+include: "/refinements/**/*.view"
 
 datagroup: thelook_default_datagroup {
   sql_trigger: select {{ 'now' | date: "%-m" }} ;;
