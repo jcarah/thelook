@@ -26,4 +26,4 @@ jobs:
         echo "Installing python modules"
         pipenv install
         echo "Running tests."
-        pipenv run python run_tests.py -p "lal_dev" -b ${{ github.head_ref }} 
+        pipenv run python run_tests.py -p "thelook" -b ${{ github.head_ref }} 
