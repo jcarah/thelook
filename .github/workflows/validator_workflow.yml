@@ -1,0 +1,29 @@
+name: looker tests
+on:
+  pull_request: 
+    branches:
+      - master 
+jobs:
+  looker_tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8.10
+    - name: Install dependencies & run tests
+      env:
+        LOOKERSDK_API_VERSION: ${{ secrets.LOOKERSDK_API_VERSION }}
+        LOOKERSDK_BASE_URL: ${{ secrets.LOOKERSDK_BASE_URL }}
+        LOOKERSDK_CLIENT_ID: ${{ secrets.LOOKERSDK_CLIENT_ID }}
+        LOOKERSDK_CLIENT_SECRET: ${{ secrets.LOOKERSDK_CLIENT_SECRET }}
+      run: |
+        echo ${{ github.head_ref }}
+        echo Installing pipenv
+        curl https://raw.githubusercontent.com/pypa/pipenv/master/get-pipenv.py | python
+        cd .github/actions
+        echo "Installing python modules"
+        pipenv install
+        echo "Running tests."
+        pipenv run python run_tests.py -p "lal_dev" -b ${{ github.head_ref }} 
