@@ -2,11 +2,13 @@ connection: "thelookmysql"
 
 # include all the views
 include: "/views/**/*.view"
+include: "/refinements/**/*.view"
 
 datagroup: thelook_default_datagroup {
   sql_trigger: select {{ 'now' | date: "%-m" }} ;;
   max_cache_age: "1 hour"
 }
+
 
 persist_with: thelook_default_datagroup
 explore: events {
