@@ -10,10 +10,6 @@ datagroup: thelook_default_datagroup {
   max_cache_age: "1 hour"
 }
 
-# access_grant: can_see_events {
-#   user_attribute: "country"
-#   allowed_values: ["USA"]
-# }
 
 persist_with: thelook_default_datagroup
 explore: events {
